@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Liste des Scans</h2>
+{% if scans %}
+  <ul class="list-group">
+    {% for scan_id in scans.keys() %}
+      <li class="list-group-item">
+        <a href="{{ url_for('scan_report', scan_id=scan_id) }}">Scan {{ scan_id }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Aucun scan disponible.</p>
+{% endif %}
+{% endblock %}

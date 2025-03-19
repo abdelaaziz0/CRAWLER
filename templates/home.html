@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center">
+  <h1>Scanner de Vulnérabilités Web</h1>
+  <p>Entrez l'URL cible pour lancer un scan :</p>
+  <form action="{{ url_for('start_scan') }}" method="get" class="row g-3 justify-content-center">
+    <div class="col-md-6">
+      <input type="url" name="url" class="form-control" placeholder="https://example.com" required>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Lancer un Scan</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

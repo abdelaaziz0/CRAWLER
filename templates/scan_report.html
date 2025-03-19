@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Résultats du Scan {{ scan_id }}</h2>
+{% if results %}
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>URL</th>
+        <th>Type de vulnérabilité</th>
+        <th>Payload</th>
+        <th>Score CVSS</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for res in results %}
+      <tr>
+        <td>{{ res.url }}</td>
+        <td>{{ res.vuln_type }}</td>
+        <td>{{ res.payload }}</td>
+        <td>{{ res.cvss_score }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p class="alert alert-success">Aucune vulnérabilité détectée.</p>
+{% endif %}
+{% endblock %}
