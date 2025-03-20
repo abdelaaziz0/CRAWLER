@@ -2,26 +2,26 @@
 
 ## 🛡️ Description
 Ce projet est un scanner de vulnérabilités web permettant d'identifier des failles communes telles que :
-- 🕷 **Cross-Site Scripting (XSS)**
-- 🛑 **Injection SQL (SQLi)**
-- 🔒 **Cross-Site Request Forgery (CSRF)**
+- **Cross-Site Scripting (XSS)**
+- **Injection SQL (SQLi)**
+- **Cross-Site Request Forgery (CSRF)**
 
 Le projet comprend deux applications distinctes :
-1. 🖥 **Un scanner web** qui explore un site cible et identifie ses vulnérabilités.
-2. 🎭 **Un site vulnérable** pour tester le scanner.
+1. **Un scanner web** qui explore un site cible et identifie ses vulnérabilités.
+2. **Un site vulnérable** pour tester le scanner.
 
 ## 🚀 Fonctionnalités
-- 🔎 Crawler pour détecter les pages et endpoints d'un site web.
-- 💉 Injection automatique de payloads XSS et SQLi pour tester les vulnérabilités.
-- 📊 Analyse des réponses HTTP pour identifier les vulnérabilités présentes.
-- 📈 Calcul d'un score CVSS pour évaluer la gravité des vulnérabilités.
-- 🖥 Interface web pour visualiser les scans effectués.
+- Crawler pour détecter les pages et endpoints d'un site web.
+- Injection automatique de payloads XSS et SQLi pour tester les vulnérabilités.
+- Analyse des réponses HTTP pour identifier les vulnérabilités présentes.
+- Calcul d'un score CVSS pour évaluer la gravité des vulnérabilités.
+- Interface web pour visualiser les scans effectués.
 
 ## 🛠 Technologies Utilisées
-- 🐍 **Flask** (Python) pour l'application web et le site vulnérable.
-- 🗃 **SQLite** pour stocker les données du site vulnérable.
-- 🎨 **Bootstrap** pour un design responsive de l'interface web.
-- 🌍 **Requests & BeautifulSoup** pour le scraping et l'analyse des pages web.
+- **Flask** (Python) pour l'application web et le site vulnérable.
+- **SQLite** pour stocker les données du site vulnérable.
+- **Bootstrap** pour un design responsive de l'interface web.
+- **Requests & BeautifulSoup** pour le scraping et l'analyse des pages web.
 
 ## 📦 Installation
 ### 1️⃣ Cloner le référentiel
@@ -49,9 +49,9 @@ python app.py
 L'interface du scanner sera accessible sur [http://localhost:5002](http://localhost:5002).
 
 ## 📖 Utilisation
-1. 🌐 Accédez à l'interface du scanner sur [http://localhost:5002](http://localhost:5002).
-2. ✍️ Entrez l'URL cible (ex: `http://localhost:5001`).
-3. 🚀 Lancez un scan et consultez les rapports.
+1. Accédez à l'interface du scanner sur [http://localhost:5002](http://localhost:5002).
+2. Entrez l'URL cible (ex: `http://localhost:5001`).
+3. Lancez un scan et consultez les rapports.
 
 ## 📂 Structure du Projet
 ```
