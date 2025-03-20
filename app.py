@@ -146,7 +146,7 @@ class CVSSCalculator:
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "dev_secret_key"
 
-# Stockage temporaire des scans (à remplacer par une base de données en production)
+# Stockage temporaire des scans
 SCAN_STORAGE = {}
 
 @app.route("/")
