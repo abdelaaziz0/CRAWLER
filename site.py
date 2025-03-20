@@ -69,7 +69,7 @@ def xss():
       <body>
         <h1>Test XSS</h1>
         <p>Vous avez saisi : {user_input}</p>
-        <p>Si votre input contient du code JavaScript, il sera exécuté !</p>
+        <p>Si input contient du code JavaScript, il sera exécuté !</p>
       </body>
     </html>
     """
