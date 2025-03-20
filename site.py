@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Application Flask vulnérable pour tester les scanners de vulnérabilités web.
 Les failles implémentées dans cet exemple sont :
@@ -27,7 +24,6 @@ DATABASE = 'vuln_site.db'
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
-        # Création ou ouverture de la base de données
         db = g._database = sqlite3.connect(DATABASE)
     return db
 
@@ -43,7 +39,6 @@ def init_db():
                 email TEXT NOT NULL
             )
         ''')
-        # Insérer des données d'exemple si la table est vide
         cursor.execute("SELECT COUNT(*) FROM users")
         count = cursor.fetchone()[0]
         if count == 0:
@@ -65,9 +60,7 @@ def close_connection(exception):
 # ---------------------------
 @app.route('/xss')
 def xss():
-    # Récupère le paramètre GET "input" sans échappement
     user_input = request.args.get('input', '')
-    # Construction d'une page HTML vulnérable (ne pas utiliser en production)
     html = f"""
     <html>
       <head>
@@ -87,11 +80,9 @@ def xss():
 # ---------------------------
 @app.route('/sqli')
 def sqli():
-    # Récupère le paramètre GET "id" pour rechercher un utilisateur
     user_id = request.args.get('id', '1')
     db = get_db()
     cursor = db.cursor()
-    # Construction d'une requête SQL vulnérable par concaténation (ne PAS utiliser en production)
     query = "SELECT id, username, email FROM users WHERE id = " + user_id
     try:
         cursor.execute(query)
@@ -113,9 +104,7 @@ def sqli():
 @app.route('/csrf_form', methods=['GET', 'POST'])
 def csrf_form():
     if request.method == 'POST':
-        # Pas de vérification du token CSRF ici : vulnérable !
         new_email = request.form.get('email', '')
-        # Pour cet exemple, on simule une mise à jour et on renvoie un message.
         return f"""
         <html>
           <head><title>CSRF Test</title></head>
@@ -126,7 +115,6 @@ def csrf_form():
           </body>
         </html>
         """
-    # Affichage du formulaire sans token CSRF
     html = """
     <html>
       <head>
@@ -167,7 +155,5 @@ def index():
     return html
 
 if __name__ == '__main__':
-    # Initialisation de la base de données
     init_db()
-    # Lancer l'application sur le port 5001 pour éviter les conflits
     app.run(debug=True, port=5001)
