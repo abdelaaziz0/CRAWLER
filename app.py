@@ -4,7 +4,6 @@ import requests
 import re
 from urllib.parse import urljoin, urlparse
 
-# Désactivation des warnings SSL pour l'exemple
 requests.packages.urllib3.disable_warnings()
 
 #####################################
@@ -93,7 +92,6 @@ class Scanner:
         Test de XSS : injecte le payload dans le paramètre 'input' attendu par le site vulnérable.
         """
         xss_payload = "<script>alert('XSS')</script>"
-        # Utilisation du paramètre 'input' pour le test
         if "?" not in url:
             test_url = url + "?input=" + xss_payload
         else:
@@ -146,7 +144,6 @@ class CVSSCalculator:
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "dev_secret_key"
 
-# Stockage temporaire des scans
 SCAN_STORAGE = {}
 
 @app.route("/")
@@ -159,20 +156,13 @@ def start_scan():
     if not target_url:
         return "Veuillez préciser une URL. ex: /start_scan?url=https://example.com", 400
 
-    # 1) Crawler
     crawler = Crawler(base_url=target_url, max_depth=1)
     endpoints = crawler.crawl()
-
-    # 2) Scanner
     scanner = Scanner(endpoints)
     results = scanner.start_scan()
-
-    # 3) Calcul des scores CVSS
     cvss_calc = CVSSCalculator()
     for r in results:
         r.cvss_score = cvss_calc.compute_score(r.vuln_type)
-
-    # 4) Stockage des résultats dans SCAN_STORAGE
     scan_id = hashlib.md5(target_url.encode()).hexdigest()[:8]
     SCAN_STORAGE[scan_id] = results
 
